@@ -3,7 +3,6 @@ import { Like } from "../models/like.model.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { User } from "../models/user.model.js";
 
 const toggleVideoLike = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
@@ -143,8 +142,9 @@ const getLikedVideos = asyncHandler(async (req, res) => {
     video: { $exists: true },
   }).populate("video");
 
-
-  return res.status(200).json(new ApiResponse(200, "Liked videos", getLikedVideos));
+  return res
+    .status(200)
+    .json(new ApiResponse(200, "Liked videos", getLikedVideos));
 });
 
 export { toggleCommentLike, toggleTweetLike, toggleVideoLike, getLikedVideos };
