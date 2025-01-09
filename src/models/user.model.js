@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
+import { verifyJWT } from "../middleware/auth.middleware.js";
 
 const userSchema = new Schema(
   {

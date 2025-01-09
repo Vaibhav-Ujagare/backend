@@ -55,6 +55,7 @@ const publishAVideo = asyncHandler(async (req, res) => {
     duration: videoFile.duration,
     owner: userId,
   });
+  console.log(video);
 
   await video.save();
 
@@ -165,13 +166,7 @@ const togglePublishStatus = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(
-      new ApiResponse(
-        200,
-        { isPublished: !publishStatus.isPublished },
-        "Video publish status updated"
-      )
-    );
+    .json(new ApiResponse(200, { video }, "Video publish status updated"));
 });
 
 export {
