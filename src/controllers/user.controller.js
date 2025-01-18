@@ -240,9 +240,10 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 });
 
 const getCurrentUser = asyncHandler(async (req, res) => {
-  console.log("CookiesData: ", req.cookies);
+  // console.log("USER: ",req.user);
   return res
     .status(200)
+    .setHeader("authorization", `Bearer ${req.cookies.accessToken}`)
     .json(new ApiResponse(200, req.user, "Current User Fetched Successfully"));
 
   // return res.send(req.user);
